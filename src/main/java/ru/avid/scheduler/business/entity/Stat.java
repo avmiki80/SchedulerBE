@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "stat", schema = "tasklist", catalog = "postgres")
+@Table(name = "STAT", schema = "TASKLIST", catalog = "POSTGRES")
 @Getter @Setter
 @AllArgsConstructor
 @NoArgsConstructor

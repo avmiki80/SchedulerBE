@@ -7,13 +7,15 @@ import ru.avid.scheduler.business.entity.Stat;
 import ru.avid.scheduler.business.entity.Task;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
-@Table(name = "user_data", schema = "tasklist", catalog = "postgres")
+@Table(name = "USER_DATA", schema = "TASKLIST", catalog = "POSTGRES")
 @Getter @Setter
-@EqualsAndHashCode(of = "id")
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
@@ -21,7 +23,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "email")
+    @Email
+    @Column
     private String email;
 
     @Column(name = "password")
@@ -29,9 +32,10 @@ public class User {
 
     @Column(name = "username")
     private String username;
+    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
+    private Activity activity;
     @OneToMany(mappedBy = "userDataByUserId")
-    private Collection<Activity> activitiesById;
-    @OneToMany(mappedBy = "userDataByUserId")
+    @Column
     private Collection<Category> categoriesById;
     @OneToMany(mappedBy = "userDataByUserId")
     private Collection<Priority> prioritiesById;
@@ -39,6 +43,24 @@ public class User {
     private Collection<Stat> statsById;
     @OneToMany(mappedBy = "userDataByUserId")
     private Collection<Task> tasksById;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return email.equals(user.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(email);
+    }
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "USER_ROLE",
+    joinColumns = @JoinColumn(name = "user_id"),
+    inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
 //    @OneToOne(mappedBy = "userDataByUserId")
 //    private UserRole userRoleById;
 }

@@ -8,7 +8,7 @@ import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
-@Table(name = "task", schema = "tasklist", catalog = "postgres")
+@Table(name = "TASK", schema = "TASKLIST", catalog = "POSTGRES")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -27,10 +27,6 @@ public class Task {
 
     @Column(name = "task_date")
     private Timestamp taskDate;
-    @Column(name = "priority_id")
-    private Long priorityId;
-    @Column(name = "category_id")
-    private Long categoryId;
 
     @ManyToOne
     @JoinColumn(name = "priority_id", referencedColumnName = "id")

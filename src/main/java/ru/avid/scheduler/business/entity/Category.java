@@ -8,7 +8,7 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-@Table(name = "category", schema = "tasklist", catalog = "postgres")
+@Table(name = "CATEGORY", schema = "TASKLIST", catalog = "POSTGRES")
 @Getter @Setter @EqualsAndHashCode(of = "id")
 @NoArgsConstructor
 @AllArgsConstructor
