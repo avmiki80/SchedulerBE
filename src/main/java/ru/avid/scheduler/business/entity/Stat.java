@@ -24,6 +24,6 @@ public class Stat {
     private Long uncompletedTotal;
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
-    private User userDataByUserId;
+    private User user;
 
 }

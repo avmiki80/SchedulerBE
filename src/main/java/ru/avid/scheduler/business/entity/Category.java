@@ -30,6 +30,6 @@ public class Category {
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
     private User userDataByUserId;
 
-    @OneToMany(mappedBy = "categoryByCategoryId")
-    private Collection<Task> tasksById;
+    @OneToMany(mappedBy = "category")
+    private Collection<Task> tasks;
 }

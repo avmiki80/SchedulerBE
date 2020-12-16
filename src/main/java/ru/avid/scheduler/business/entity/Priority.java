@@ -23,7 +23,7 @@ public class Priority {
     private String color;
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
-    private User userDataByUserId;
-    @OneToMany(mappedBy = "priorityByPriorityId")
-    private Collection<Task> tasksById;
+    private User user;
+    @OneToMany(mappedBy = "priority")
+    private Collection<Task> tasks;
 }

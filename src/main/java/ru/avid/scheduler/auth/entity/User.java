@@ -36,13 +36,13 @@ public class User {
     private Activity activity;
     @OneToMany(mappedBy = "userDataByUserId")
     @Column
-    private Collection<Category> categoriesById;
-    @OneToMany(mappedBy = "userDataByUserId")
-    private Collection<Priority> prioritiesById;
-    @OneToMany(mappedBy = "userDataByUserId")
-    private Collection<Stat> statsById;
-    @OneToMany(mappedBy = "userDataByUserId")
-    private Collection<Task> tasksById;
+    private Collection<Category> categories;
+    @OneToMany(mappedBy = "user")
+    private Collection<Priority> priorities;
+    @OneToMany(mappedBy = "user")
+    private Collection<Stat> stats;
+    @OneToMany(mappedBy = "user")
+    private Collection<Task> tasks;
 
     @Override
     public boolean equals(Object o) {

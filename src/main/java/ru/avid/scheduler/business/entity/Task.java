@@ -18,10 +18,10 @@ public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Basic
+
     @Column(name = "title")
     private String title;
-    @Basic
+
     @Column(name = "completed")
     private Short completed;
 
@@ -30,12 +30,12 @@ public class Task {
 
     @ManyToOne
     @JoinColumn(name = "priority_id", referencedColumnName = "id")
-    private Priority priorityByPriorityId;
+    private Priority priority;
     @ManyToOne
     @JoinColumn(name = "category_id", referencedColumnName = "id")
-    private Category categoryByCategoryId;
+    private Category category;
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
-    private User userDataByUserId;
+    private User user;
 
 }
