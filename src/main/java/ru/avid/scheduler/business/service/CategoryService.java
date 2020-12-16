@@ -20,6 +20,6 @@ public class CategoryService {
     private CategoryRepository categoryRepository;
 
     public List<Category> findAll(String email){
-        return this.categoryRepository.findAll();
+        return this.categoryRepository.findByUserEmailOrderByTitleAsc(email);
     }
 }

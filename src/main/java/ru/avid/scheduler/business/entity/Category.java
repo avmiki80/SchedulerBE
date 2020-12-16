@@ -28,7 +28,7 @@ public class Category {
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
-    private User userDataByUserId;
+    private User user;
 
     @OneToMany(mappedBy = "category")
     private Collection<Task> tasks;

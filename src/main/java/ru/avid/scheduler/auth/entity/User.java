@@ -34,7 +34,7 @@ public class User {
     private String username;
     @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
     private Activity activity;
-    @OneToMany(mappedBy = "userDataByUserId")
+    @OneToMany(mappedBy = "user")
     @Column
     private Collection<Category> categories;
     @OneToMany(mappedBy = "user")
