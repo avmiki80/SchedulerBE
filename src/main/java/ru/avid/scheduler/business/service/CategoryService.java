@@ -22,4 +22,5 @@ public class CategoryService {
     public List<Category> findAll(String email){
         return this.categoryRepository.findByUserEmailOrderByTitleAsc(email);
     }
+
 }

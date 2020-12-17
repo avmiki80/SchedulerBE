@@ -10,8 +10,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 public class SpringConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.formLogin().disable();
-        http.httpBasic().disable();
-        http.requiresChannel().anyRequest().requiresSecure();
+        http.csrf().disable(); //на время разработки отключить, чтобы не было ошибок доступа (чтоб не ожидал токен)
+        http.formLogin().disable();//форма авторизации будет не на спринг
+        http.httpBasic().disable(); //откл. чтандартную форму авторизации
+        http.requiresChannel().anyRequest().requiresSecure(); // испозуем https
     }
 }
