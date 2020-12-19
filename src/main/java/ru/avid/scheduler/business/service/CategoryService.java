@@ -1,6 +1,7 @@
 package ru.avid.scheduler.business.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import ru.avid.scheduler.business.entity.Category;
 import ru.avid.scheduler.business.repository.CategoryRepository;
@@ -23,4 +24,11 @@ public class CategoryService {
         return this.categoryRepository.findByUserEmailOrderByTitleAsc(email);
     }
 
+    public Category addOrUpdate(Category category){
+        return this.categoryRepository.save(category);
+    }
+
+    public void delete(Long id){
+        this.categoryRepository.deleteById(id);
+    }
 }
