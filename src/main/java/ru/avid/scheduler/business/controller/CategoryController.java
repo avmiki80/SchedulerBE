@@ -6,10 +6,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.avid.scheduler.business.entity.Category;
+import ru.avid.scheduler.business.search.CategorySearchValues;
 import ru.avid.scheduler.business.service.CategoryService;
 import ru.avid.scheduler.business.util.MyLogger;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping(value = "/category")
@@ -26,9 +28,9 @@ public class CategoryController {
 //        return this.categoryService.findAll("avmiki80@mail.ru");
 //    }
     @PostMapping("/all")
-    public List<Category> findAll(@RequestBody String email) {
+    public ResponseEntity<List<Category>> findAll(@RequestBody String email) {
         MyLogger.debugMethodName("CategoryController: findAll(email)");
-        return this.categoryService.findAll(email);
+        return ResponseEntity.ok(this.categoryService.findAll(email));
     }
 
     @PutMapping("/add")
@@ -81,5 +83,22 @@ public class CategoryController {
             return new ResponseEntity("id =" + id + "not found", HttpStatus.NOT_ACCEPTABLE);
         }
         return ResponseEntity.ok(HttpStatus.OK);
+    }
+    @PostMapping("/search")
+    public ResponseEntity<List<Category>> search(@RequestBody CategorySearchValues categorySearchValues){
+        MyLogger.debugMethodName("CategoryController: search(categorySearchValues)");
+        return ResponseEntity.ok(this.categoryService.search(categorySearchValues.getTitle(), categorySearchValues.getEmail()));
+    }
+    @PostMapping("/id")
+    public ResponseEntity<Category> finfById(@RequestBody Long id){
+        MyLogger.debugMethodName("CategoryController: finfById(id)");
+        Category category = null;
+        try {
+            category = this.categoryService.findById(id);
+        } catch (NoSuchElementException ex){
+            ex.printStackTrace();;
+            return new ResponseEntity("id=" + id + " not found", HttpStatus.NOT_ACCEPTABLE);
+        }
+        return ResponseEntity.ok(category);
     }
 }

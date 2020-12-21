@@ -31,4 +31,10 @@ public class CategoryService {
     public void delete(Long id){
         this.categoryRepository.deleteById(id);
     }
+    public List<Category> search(String title, String email){
+        return this.categoryRepository.findByTitle(title, email);
+    }
+    public Category findById(Long id){
+        return this.categoryRepository.findById(id).get();
+    }
 }
