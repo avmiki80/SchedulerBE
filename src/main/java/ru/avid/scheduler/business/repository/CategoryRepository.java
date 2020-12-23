@@ -18,6 +18,6 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
             " or lower(c.title) like lower(concat('%', :title, '%'))) " +
             "and c.user.email=:email " +
             "order by c.title asc")
-    List<Category> findByTitle(@Param("title") String title, @Param("email")String email);
+    List<Category> find(@Param("title") String title, @Param("email")String email);
 
 }

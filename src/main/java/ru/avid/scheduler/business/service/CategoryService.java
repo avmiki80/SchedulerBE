@@ -1,7 +1,6 @@
 package ru.avid.scheduler.business.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import ru.avid.scheduler.business.entity.Category;
 import ru.avid.scheduler.business.repository.CategoryRepository;
@@ -32,7 +31,7 @@ public class CategoryService {
         this.categoryRepository.deleteById(id);
     }
     public List<Category> search(String title, String email){
-        return this.categoryRepository.findByTitle(title, email);
+        return this.categoryRepository.find(title, email);
     }
     public Category findById(Long id){
         return this.categoryRepository.findById(id).get();
