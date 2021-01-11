@@ -90,7 +90,7 @@ public class CategoryController {
         return ResponseEntity.ok(this.categoryService.search(categorySearchValues.getTitle(), categorySearchValues.getEmail()));
     }
     @PostMapping("/id")
-    public ResponseEntity<Category> finfById(@RequestBody Long id){
+    public ResponseEntity<Category> findById(@RequestBody Long id){
         MyLogger.debugMethodName("CategoryController: finfById(id)");
         Category category = null;
         try {

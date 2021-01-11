@@ -93,7 +93,7 @@ public class PriorityController {
         return ResponseEntity.ok(this.priorityService.search(prioritySearchValues.getTitle(), prioritySearchValues.getEmail()));
     }
     @PostMapping("/id")
-    public ResponseEntity<Priority> finfById(@RequestBody Long id){
+    public ResponseEntity<Priority> findById(@RequestBody Long id){
         MyLogger.debugMethodName("PriorityController: finfById(id)");
         Priority priority = null;
         try {
